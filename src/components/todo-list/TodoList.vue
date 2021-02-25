@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import TodoItem from '../todo-item/TodoItem.vue'
   import store from '../../store/store.js'
 

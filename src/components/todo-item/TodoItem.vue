@@ -1,16 +1,16 @@
 <template>
   <li class="todo-item" :class="{ completed: todo.completed }">
-    <span v-if="!isEditing" class="todo-text">{{ todo.content }}</span>
-    <input v-else class="edit-todo" v-model="editedContent">
+    <span v-if="!isEditing" class="todo-text">{{ content }}</span>
+    <input v-else v-model="content" @keyup.enter="updateTodo">
     <div class="buttons">
-      <button @click="toggleTodo(todo.id)">{{ todo.completed ? 'Not done' : 'Done' }}</button>
-      <button v-if="!todo.completed" @click="editTodo">Edit</button>
-      <button @click="deleteTodo(todo.id)">Delete</button>
+      <button type="button" @click="toggleTodo">{{ todo.completed ? 'Not done' : 'Done' }}</button>
+      <button type="button" v-if="!todo.completed" @click="editTodo">Edit</button>
+      <button type="button" @click="deleteTodo">Delete</button>
     </div>
   </li>
 </template>
 
-<script lang="ts">
+<script>
 import store from '../../store/store.js'
 
 export default {
@@ -21,18 +21,22 @@ export default {
   data() {
     return {
       isEditing: false,
-      editedContent: '',
+      content: this.todo.content,
     }
   },
   methods: {
-    toggleTodo(id) {
-      store.toggleTodo(id)
+    toggleTodo() {
+      store.toggleTodo(this.todo.id)
     },
-    deleteTodo(id) {
-      store.deleteTodo(id)
+    deleteTodo() {
+      store.deleteTodo(this.todo.id)
     },
     editTodo() {
       this.isEditing = true
+    },
+    updateTodo() {
+      this.isEditing = false
+      store.editTodo(this.todo.id, this.content)
     },
   },
 }
@@ -52,22 +56,6 @@ export default {
   .completed > .todo-text {
     text-decoration: line-through;
     color: darkgrey;
-  }
-
-  button {
-    padding: 4px 12px;
-    border: 1px solid black;
-    border-radius: 4px;
-    outline: none;
-    background-color: transparent;
-    cursor: pointer;
-    transition: background-color 150ms ease-in-out;
-  }
-
-  button:hover {
-    border-color: dodgerblue;
-    background-color: dodgerblue;
-    color: white;
   }
 
   .buttons button:not(:last-of-type) {
