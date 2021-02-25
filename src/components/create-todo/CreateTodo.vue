@@ -2,7 +2,7 @@
   <div class="create-todo-container">
     <div>
       <label for="new-todo">What needs doing?</label>
-      <input id="new-todo" type="text" v-model="content" @keyup.enter="createTodo">
+      <input id="new-todo" type="text" v-model.trim="content" @keyup.enter="createTodo">
     </div>
     <button type="button" @click="createTodo">Add</button>
   </div>
@@ -20,6 +20,9 @@
     },
     methods: {
       createTodo() {
+        if (this.content.length === 0) {
+          return
+        }
         store.createTodo(this.content)
         this.content = ''
       },

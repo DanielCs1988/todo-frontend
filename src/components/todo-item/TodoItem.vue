@@ -1,11 +1,14 @@
 <template>
   <li class="todo-item" :class="{ completed: todo.completed }">
     <span v-if="!isEditing" class="todo-text">{{ content }}</span>
-    <input v-else v-model="content" @keyup.enter="updateTodo">
+    <input v-else v-model.trim="content" @keyup.enter="updateTodo" autofocus>
     <div class="buttons">
-      <button type="button" @click="toggleTodo">{{ todo.completed ? 'Not done' : 'Done' }}</button>
-      <button type="button" v-if="!todo.completed" @click="editTodo">Edit</button>
-      <button type="button" @click="deleteTodo">Delete</button>
+      <template v-if="!isEditing">
+        <button type="button" @click="toggleTodo">{{ todo.completed ? 'Not completed' : 'Complete' }}</button>
+        <button type="button" v-if="!todo.completed" @click="editTodo">Edit</button>
+        <button type="button" @click="deleteTodo">Delete</button>
+      </template>
+      <button type="button" v-else @click="updateTodo">Done</button>
     </div>
   </li>
 </template>
@@ -35,6 +38,9 @@ export default {
       this.isEditing = true
     },
     updateTodo() {
+      if (this.content.length === 0) {
+        return
+      }
       this.isEditing = false
       store.editTodo(this.todo.id, this.content)
     },
@@ -49,8 +55,14 @@ export default {
     align-items: center;
   }
 
+  .todo-text {
+    max-width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .todo-item:not(:last-of-type) {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
 
   .completed > .todo-text {

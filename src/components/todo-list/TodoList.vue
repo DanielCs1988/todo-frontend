@@ -31,6 +31,7 @@
     width: 100%;
     background-color: #f7f7f7;
     padding: 20px;
+    overflow: auto;
   }
 
   @media screen and (min-width: 768px) {
