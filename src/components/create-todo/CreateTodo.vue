@@ -32,15 +32,15 @@
 
 <style>
   .create-todo-container {
-    background-color: #f7f7f7;
+    background-color: #fff;
     width: 600px;
-    border: 1px solid dimgrey;
-    border-radius: 4px;
+    border-radius: 8px;
     margin-bottom: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 40px 20px;
+    box-shadow: 0 0 0 1px #dadce0;
   }
 
   .create-todo-container label {

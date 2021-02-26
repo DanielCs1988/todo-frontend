@@ -29,7 +29,7 @@
 <style scoped>
   .list-container {
     width: 100%;
-    background-color: #f7f7f7;
+    background-color: #fff;
     padding: 20px;
     overflow: auto;
   }
@@ -38,8 +38,8 @@
     .list-container {
       width: 600px;
       height: 70vh;
-      border: 1px solid dimgrey;
-      border-radius: 4px;
+      border-radius: 8px;
+      box-shadow: 0 0 0 1px #dadce0;
     }
   }
 </style>

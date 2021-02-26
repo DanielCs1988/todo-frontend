@@ -26,6 +26,7 @@ export default {
     margin: 0;
     padding: 0;
     position: relative;
+    font-family: Arial, sans-serif;
   }
 
   ul, ol {
@@ -54,7 +55,7 @@ export default {
   }
 
   .container {
-    background-color: #e0d7e0;
+    background-color: #f3f3f3;
     padding: 0;
   }
 
