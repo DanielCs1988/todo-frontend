@@ -1,7 +1,7 @@
 import { reactive } from 'vue'
 import axios from 'axios'
 
-const BASE_API_URL = 'http://localhost:3000/todos'
+const BASE_API_URL = 'https://danielcs-todo-backend.herokuapp.com/todos'
 
 const store = {
   state: reactive({
